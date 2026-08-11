@@ -37,7 +37,7 @@ Voeg de module toe aan `config/config.js` van MagicMirror:
 }
 ```
 
-Met `title` bepaal je de titel boven het puntensaldo. Deze instelling hoort in `config/config.js` van MagicMirror en niet in `settings.json`.
+Met `title` bepaal je de standaard MagicMirror-header boven het puntensaldo. Deze instelling hoort in `config/config.js` van MagicMirror en niet in `settings.json`.
 
 `updateIntervalHours` bepaalt in uren hoe vaak MagicMirror de opgeslagen JSON-stand opnieuw leest. De standaardwaarde is `12`. Kommagetallen zoals `0.5` zijn toegestaan voor iedere 30 minuten. Een ontbrekende, negatieve of ongeldige waarde valt terug op twaalf uur.
 

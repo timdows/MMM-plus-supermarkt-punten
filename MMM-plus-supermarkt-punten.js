@@ -25,6 +25,10 @@ Module.register("MMM-plus-supermarkt-punten", {
     return ["MMM-plus-supermarkt-punten.css"];
   },
 
+  getHeader() {
+    return this.config.title;
+  },
+
   fetchPoints() {
     this.sendSocketNotification("PLUS_FETCH_POINTS", {
       settingsFile: this.config.settingsFile,
@@ -50,11 +54,6 @@ Module.register("MMM-plus-supermarkt-punten", {
   getDom() {
     const wrapper = document.createElement("div");
     wrapper.className = "plus-points";
-
-    const title = document.createElement("div");
-    title.className = "plus-points__title small dimmed";
-    title.textContent = this.config.title;
-    wrapper.appendChild(title);
 
     const value = document.createElement("div");
     value.className = "plus-points__value bright";
