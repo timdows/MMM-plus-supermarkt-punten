@@ -31,10 +31,14 @@ Voeg de module toe aan `config/config.js` van MagicMirror:
   module: "MMM-plus-supermarkt-punten",
   position: "top_right",
   config: {
-    updateInterval: 60 * 60 * 1000
+    updateIntervalHours: 12
   }
 }
 ```
+
+`updateIntervalHours` bepaalt in uren hoe vaak MagicMirror de opgeslagen JSON-stand opnieuw leest. De standaardwaarde is `12`. Kommagetallen zoals `0.5` zijn toegestaan voor iedere 30 minuten. Een ontbrekende, negatieve of ongeldige waarde valt terug op twaalf uur.
+
+Dit interval veroorzaakt niet telkens een bezoek aan PLUS: zolang er al een record voor vandaag bestaat, wordt alleen `plus-points-history.json` gelezen. PLUS wordt automatisch maximaal eenmaal per kalenderdag benaderd.
 
 ## Lokaal gebruiken
 

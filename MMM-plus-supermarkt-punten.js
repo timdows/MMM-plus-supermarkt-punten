@@ -1,6 +1,6 @@
 Module.register("MMM-plus-supermarkt-punten", {
   defaults: {
-    updateInterval: 60 * 60 * 1000,
+    updateIntervalHours: 12,
     settingsFile: "settings.json",
     timeout: 60000,
     title: "Mijn PLUS punten"
@@ -11,7 +11,14 @@ Module.register("MMM-plus-supermarkt-punten", {
     this.error = null;
     this.loading = true;
     this.fetchPoints();
-    this.timer = setInterval(() => this.fetchPoints(), this.config.updateInterval);
+
+    const configuredHours = Number(this.config.updateIntervalHours);
+    const updateIntervalHours =
+      Number.isFinite(configuredHours) && configuredHours > 0 ? configuredHours : 12;
+    this.timer = setInterval(
+      () => this.fetchPoints(),
+      updateIntervalHours * 60 * 60 * 1000
+    );
   },
 
   getStyles() {
