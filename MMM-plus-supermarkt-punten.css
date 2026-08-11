@@ -1,0 +1,25 @@
+.plus-points {
+  min-width: 220px;
+  text-align: center;
+}
+
+.plus-points__title {
+  margin-bottom: 6px;
+}
+
+.plus-points__value {
+  color: #80bd1d;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.plus-points__breakdown {
+  margin-top: 6px;
+}
+
+.plus-points__error {
+  max-width: 320px;
+  color: #ff8a80;
+  white-space: normal;
+}

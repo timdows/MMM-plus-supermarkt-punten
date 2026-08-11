@@ -1,0 +1,6 @@
+{
+  "username": "jouw-emailadres@example.nl",
+  "password": "jouw-wachtwoord",
+  "headless": true,
+  "localPort": 8080
+}

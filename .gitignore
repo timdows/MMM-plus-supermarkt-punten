@@ -1,0 +1,8 @@
+node_modules/
+settings.json
+playwright-report/
+test-results/
+plus-navigation.zip
+plus-debug.png
+.DS_Store
+npm-debug.log*
