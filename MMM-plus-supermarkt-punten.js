@@ -3,7 +3,7 @@ Module.register("MMM-plus-supermarkt-punten", {
     updateIntervalHours: 12,
     settingsFile: "settings.json",
     timeout: 60000,
-    title: "Mijn PLUS punten"
+    title: "Mijn Plus punten"
   },
 
   start() {
