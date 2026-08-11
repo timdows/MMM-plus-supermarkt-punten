@@ -4,5 +4,6 @@ playwright-report/
 test-results/
 plus-navigation.zip
 plus-debug.png
+plus-points-history.json
 .DS_Store
 npm-debug.log*

@@ -83,8 +83,17 @@ Module.register("MMM-plus-supermarkt-punten", {
     if (this.points?.fetchedAt) {
       const updated = document.createElement("div");
       updated.className = "xsmall dimmed";
-      updated.textContent = `Bijgewerkt: ${new Date(this.points.fetchedAt).toLocaleString("nl-NL")}`;
+      const source = this.points.fromCache ? "dagcache" : "PLUS";
+      updated.textContent =
+        `Bijgewerkt: ${new Date(this.points.fetchedAt).toLocaleString("nl-NL")} (${source})`;
       wrapper.appendChild(updated);
+    }
+
+    if (this.points?.stale) {
+      const warning = document.createElement("div");
+      warning.className = "xsmall plus-points__error";
+      warning.textContent = "Laatste bekende stand; PLUS kon vandaag niet worden bereikt.";
+      wrapper.appendChild(warning);
     }
 
     return wrapper;

@@ -46,6 +46,31 @@ npm run local
 
 Open daarna <http://localhost:8080>. De pagina haalt bij het starten meteen nieuwe gegevens op. Met **Vernieuwen** start je de scraper nogmaals; wijzigingen in `settings.json` worden daarbij opnieuw ingelezen.
 
+## Dagelijkse historie en cache
+
+De module bewaart de punten in `plus-points-history.json`. Op de eerste aanvraag van iedere kalenderdag wordt PLUS één keer bezocht. Alle volgende aanvragen die dag komen rechtstreeks uit dit bestand, ook als MagicMirror ieder uur ververst.
+
+```json
+{
+  "version": 1,
+  "updatedAt": "2026-08-11T10:00:00.000Z",
+  "records": [
+    {
+      "date": "2026-08-11",
+      "totalPoints": 11361,
+      "fullCards": 56,
+      "loosePoints": 161,
+      "pointsPerCard": 200,
+      "redeemableValue": "336.00"
+    }
+  ]
+}
+```
+
+De daggrens gebruikt standaard `Europe/Amsterdam`. Zowel bestandsnaam als tijdzone kunnen in `settings.json` worden aangepast met `historyFile` en `timeZone`. Het historiebestand staat in `.gitignore`, omdat het persoonlijke informatie bevat. Als de dagelijkse PLUS-ophaling mislukt, toont de module de laatst bekende stand in plaats van leeg te blijven. Een mislukte automatische poging wordt ook voor die dag onthouden, zodat de module PLUS niet alsnog ieder uur probeert te benaderen.
+
+De knop **Vernieuwen** in de lokale modus forceert bewust een nieuwe PLUS-ophaling. Gewoon laden van de pagina gebruikt de dagelijkse cache.
+
 ## Zelf de route naar de punten aanwijzen
 
 Gebruik de opnamemodus als er na het inloggen nog door de PLUS-site geklikt moet worden:

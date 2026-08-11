@@ -1,6 +1,6 @@
 const NodeHelper = require("node_helper");
 const path = require("path");
-const { scrapePoints } = require("./plus-scraper");
+const { getDailyPoints } = require("./points-store");
 
 module.exports = NodeHelper.create({
   start() {
@@ -19,7 +19,7 @@ module.exports = NodeHelper.create({
       delete require.cache[require.resolve(settingsPath)];
       const settings = require(settingsPath);
 
-      scrapePoints({ ...settings, timeout: payload.timeout })
+      getDailyPoints({ ...settings, timeout: payload.timeout })
         .then((result) => this.sendSocketNotification("PLUS_POINTS", result))
         .catch((error) => {
           this.sendSocketNotification("PLUS_POINTS_ERROR", {

@@ -1,6 +1,6 @@
 const http = require("http");
 const path = require("path");
-const { scrapePoints } = require("./plus-scraper");
+const { getDailyPoints } = require("./points-store");
 
 const settingsPath = path.resolve(__dirname, "settings.json");
 let current = { status: "loading", message: "PLUS-punten worden opgehaald…" };
@@ -11,11 +11,11 @@ function loadSettings() {
   return require(settingsPath);
 }
 
-async function refresh() {
+async function refresh(force = false) {
   if (refreshPromise) return refreshPromise;
 
   current = { status: "loading", message: "PLUS-punten worden opgehaald…" };
-  refreshPromise = scrapePoints(loadSettings())
+  refreshPromise = getDailyPoints(loadSettings(), { force })
     .then((result) => {
       current = { status: "success", ...result };
     })
@@ -56,6 +56,7 @@ function html() {
     document.querySelector('#message').textContent = data.status === 'success'
       ? data.fullCards + ' volle kaarten + ' + data.loosePoints + ' van ' + data.pointsPerCard + ' punten' +
         (data.redeemableValue ? '\\nInwisselbaar: €' + data.redeemableValue : '') +
+        '\\nBron: ' + (data.fromCache ? 'dagelijkse JSON-cache' : 'PLUS-website') +
         '\\nBijgewerkt: ' + new Date(data.fetchedAt).toLocaleString('nl-NL')
       : (data.message || 'Laden…') + (data.details?.length ? '\\n' + data.details.join('\\n') : '');
     if (data.status === 'loading') setTimeout(render, 1000);
@@ -74,7 +75,7 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (request.url === "/api/refresh" && request.method === "POST") {
-    refresh();
+    refresh(true);
     response.writeHead(202).end();
     return;
   }

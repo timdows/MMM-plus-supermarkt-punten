@@ -2,5 +2,7 @@
   "username": "jouw-emailadres@example.nl",
   "password": "jouw-wachtwoord",
   "headless": true,
-  "localPort": 8080
+  "localPort": 8080,
+  "historyFile": "plus-points-history.json",
+  "timeZone": "Europe/Amsterdam"
 }
