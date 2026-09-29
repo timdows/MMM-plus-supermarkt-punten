@@ -30,9 +30,9 @@
 }
 
 .plus-points__metric-value {
-  color: #80bd1d;
-  font-size: 25px;
-  font-weight: 700;
+  color: #999;
+  font-size: 20px;
+  font-weight: 400;
   line-height: 1.05;
   white-space: nowrap;
 }
@@ -99,7 +99,7 @@
   }
 
   .plus-points__metric-value {
-    font-size: 21px;
+    font-size: 18px;
   }
 
   .plus-points__chart {
