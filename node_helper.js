@@ -1,6 +1,14 @@
 const NodeHelper = require("node_helper");
 const path = require("path");
-const { getDailyPoints } = require("./points-store");
+const { getDailyPoints, readHistory } = require("./points-store");
+
+function sixMonthHistory(records, referenceDate = new Date()) {
+  const cutoff = new Date(referenceDate);
+  cutoff.setMonth(cutoff.getMonth() - 6);
+  const cutoffDate = cutoff.toISOString().slice(0, 10);
+
+  return records.filter((record) => record.date >= cutoffDate);
+}
 
 module.exports = NodeHelper.create({
   start() {
@@ -19,8 +27,16 @@ module.exports = NodeHelper.create({
       delete require.cache[require.resolve(settingsPath)];
       const settings = require(settingsPath);
 
-      getDailyPoints({ ...settings, timeout: payload.timeout })
-        .then((result) => this.sendSocketNotification("PLUS_POINTS", result))
+      const storeSettings = { ...settings, timeout: payload.timeout };
+
+      getDailyPoints(storeSettings)
+        .then(async (result) => {
+          const history = await readHistory(storeSettings);
+          this.sendSocketNotification("PLUS_POINTS", {
+            ...result,
+            history: sixMonthHistory(history.records)
+          });
+        })
         .catch((error) => {
           this.sendSocketNotification("PLUS_POINTS_ERROR", {
             message: error.message,

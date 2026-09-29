@@ -55,7 +55,7 @@ Open daarna <http://localhost:8080>. De pagina haalt bij het starten meteen nieu
 
 ## Dagelijkse historie en cache
 
-De module bewaart de punten in `plus-points-history.json`. Op de eerste aanvraag van iedere kalenderdag wordt PLUS één keer bezocht. Alle volgende aanvragen die dag komen rechtstreeks uit dit bestand, ook als MagicMirror ieder uur ververst.
+De module bewaart de punten in `plus-points-history.json`. Op de eerste aanvraag van iedere kalenderdag wordt PLUS één keer bezocht. Alle volgende aanvragen die dag komen rechtstreeks uit dit bestand, ook als MagicMirror ieder uur ververst. De compacte grafiek toont de beschikbare dagstanden van de afgelopen zes maanden; hij vult zich dus vanzelf naarmate er meer dagen worden opgeslagen.
 
 ```json
 {

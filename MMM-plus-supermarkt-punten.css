@@ -1,21 +1,109 @@
 .plus-points {
-  min-width: 220px;
+  min-width: 440px;
+}
+
+.plus-points__content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.plus-points__summary {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: stretch;
+}
+
+.plus-points__metric {
+  min-width: 72px;
+  padding: 0 8px;
   text-align: center;
+  border-right: 1px solid #444;
 }
 
-.plus-points__value {
+.plus-points__metric:first-child {
+  padding-left: 0;
+}
+
+.plus-points__metric:last-child {
+  border-right: 0;
+}
+
+.plus-points__metric-value {
   color: #80bd1d;
-  font-size: 48px;
+  font-size: 25px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
+  white-space: nowrap;
 }
 
-.plus-points__breakdown {
+.plus-points__metric-label {
+  margin-top: 4px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.plus-points__chart {
+  display: flex;
+  width: 170px;
+  flex: 0 0 170px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+}
+
+.plus-points__chart svg {
+  display: block;
+  width: 100%;
+  height: 54px;
+  overflow: visible;
+}
+
+.plus-points__line {
+  fill: none;
+  stroke: #aaa;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+
+.plus-points__period {
+  margin-top: 2px;
+  line-height: 1;
+}
+
+.plus-points__updated {
   margin-top: 6px;
+  text-align: right;
 }
 
 .plus-points__error {
   max-width: 320px;
   color: #ff8a80;
   white-space: normal;
+}
+
+@media (max-width: 600px) {
+  .plus-points {
+    min-width: 0;
+  }
+
+  .plus-points__content {
+    gap: 12px;
+  }
+
+  .plus-points__metric {
+    min-width: 70px;
+    padding: 0 8px;
+  }
+
+  .plus-points__metric-value {
+    font-size: 21px;
+  }
+
+  .plus-points__chart {
+    width: 145px;
+    flex-basis: 145px;
+  }
 }
